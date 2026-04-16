@@ -1,0 +1,6 @@
+Flask
+playwright
+requests
+flask-cors
+python-dotenv
+prismjs
