@@ -44,8 +44,34 @@ The Smart API Integration Tool is a web application designed to simplify the pro
 - View the extracted API information and generated code on the results page.
 - Copy or download the generated code as needed.
 
-## Contributing
-Contributions are welcome! Please feel free to submit a pull request or open an issue for any enhancements or bug fixes.
+## Solution Approach
 
-## License
-This project is licensed under the MIT License. See the LICENSE file for more details.
+### Core Workflow
+1. **API Information Extraction** (`extractor.py`)
+   - Fetches API documentation from provided URL using `requests`
+   - Parses OpenAPI/Swagger JSON specifications automatically
+   - Falls back to regex-based extraction from HTML documentation
+   - Extracts endpoints, HTTP methods, paths, authentication schemes (API Key, Bearer Token, OAuth2)
+
+2. **Intelligent Code Generation** (`codegen.py`)
+   - Generates language-specific wrapper classes (Python or Node.js)
+   - Creates auto-generated methods for each API endpoint
+   - Automatically integrates detected authentication methods
+   - Python: Returns `APIWrapper` class with `requests.Session` for HTTP requests
+   - Node.js: Returns async class with `fetch` API
+
+3. **User Interface** (`app.py`)
+   - Flask backend processes user requests via `/generate` endpoint
+   - Displays extracted endpoints, authentication details, and generated code
+   - Supports code download as ZIP packages
+
+### Example Output
+- Python: Generates class with methods like `get_users()`, `post_users()` with built-in auth handling
+- Node.js: Generates async methods compatible with modern JavaScript
+
+The solution simplifies API integration by automating the extraction and code generation process, reducing manual integration effort.
+
+
+
+Author : Thirisha Shalini 
+License : MIT
