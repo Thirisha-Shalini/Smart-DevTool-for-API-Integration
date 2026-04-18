@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Integration Tool</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/themes/prism-tomorrow.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/components/prism-javascript.min.js"></script>
+</head>
+<body>
+    <div class="page-shell">
+        <header class="hero-panel">
+            <div class="hero-copy">
+                <span class="eyebrow">API Integration Tool</span>
+                <h1>Generate Client SDKs from OpenAPI Docs</h1>
+                <p>Paste the API documentation URL, describe the use case, and generate ready-to-use Python or Node.js wrapper code instantly.</p>
+            </div>
+        </header>
+
+        <main class="container">
+            <section class="card form-card">
+                <div class="card-header">
+                    <div>
+                        <h2>API Request</h2>
+                        <p>Use the documentation URL and use case to create a tailored wrapper.</p>
+                    </div>
+                    <div class="badge">Fast &amp; Clean</div>
+                </div>
+
+                <form id="api-form" autocomplete="off">
+                    <label for="api-url">API Documentation URL</label>
+                    <input type="url" id="api-url" name="url" placeholder="https://example.com/openapi.json" required>
+
+                    <label for="usecase">Use Case</label>
+                    <input type="text" id="usecase" name="usecase" placeholder="Generate a Python wrapper to manage pets and inventory" required>
+
+                    <label for="lang">Preferred Language</label>
+                    <select id="lang" name="lang">
+                        <option value="python">Python</option>
+                        <option value="nodejs">Node.js</option>
+                    </select>
+
+                    <button type="submit" class="primary-button">Generate Code</button>
+                </form>
+                <div id="error-banner" class="error-banner hidden"></div>
+            </section>
+
+            <section id="results" class="card results-card hidden">
+                <div class="card-header">
+                    <div>
+                        <h2>Results</h2>
+                        <p>Review the extracted API details and generated wrapper code.</p>
+                    </div>
+                    <span class="status-pill">Ready</span>
+                </div>
+
+                <div class="result-grid">
+                    <div class="info-panel">
+                        <h3>Extracted API Information</h3>
+                        <div>
+                            <h4 style="font-size: 0.9rem; color: #6b7280; margin: 12px 0 8px;">Endpoints</h4>
+                            <div id="endpoints"></div>
+                        </div>
+                        <div style="margin-top: 18px;">
+                            <h4 style="font-size: 0.9rem; color: #6b7280; margin: 12px 0 8px;">Authentication Methods</h4>
+                            <p id="auth-methods" style="margin: 0; color: #475569;"></p>
+                        </div>
+                        <div style="margin-top: 18px;">
+                            <h4 style="font-size: 0.9rem; color: #6b7280; margin: 12px 0 8px;">SDKs Detected</h4>
+                            <p id="sdks" style="margin: 0; color: #475569;"></p>
+                        </div>
+                    </div>
+                    <div class="code-panel">
+                        <h3>Generated Code</h3>
+                        <pre><code id="generated-code" class="language-python"></code></pre>
+                    </div>
+                </div>
+
+                <div class="actions-row">
+                    <button id="download-btn" class="secondary-button">Download Code</button>
+                    <button id="copy-btn" class="secondary-button">Copy Code</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

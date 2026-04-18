@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Integration Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/themes/prism-tomorrow.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/components/prism-javascript.min.js"></script>
+</head>
+<body>
+    <div class="page-shell">
+        <header class="hero-panel">
+            <div class="hero-copy">
+                <span class="eyebrow">API Integration Results</span>
+                <h1>Your generated wrapper is ready</h1>
+                <p>Review the extracted endpoints, authentication methods, and generated code below.</p>
+            </div>
+        </header>
+
+        <main class="container">
+            <section class="card results-card">
+                <div class="card-header">
+                    <div>
+                        <h2>API Summary</h2>
+                        <p>Extracted API details from the provided documentation URL.</p>
+                    </div>
+                    <span class="status-pill">Completed</span>
+                </div>
+
+                <div class="result-grid">
+                    <div class="info-panel">
+                        <h3>Endpoints</h3>
+                        <ul>
+                            {% for method, path in endpoints %}
+                            <li>{{ method }} {{ path }}</li>
+                            {% endfor %}
+                        </ul>
+
+                        <h3>Authentication Methods</h3>
+                        <ul>
+                            {% for auth in auth_methods %}
+                            <li>{{ auth }}</li>
+                            {% endfor %}
+                        </ul>
+
+                        <h3>Detected SDKs</h3>
+                        <ul>
+                            {% for sdk in sdks %}
+                            <li>{{ sdk }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <div class="code-panel">
+                        <h3>Generated Code</h3>
+                        <pre><code class="{{ lang }}">{{ generated_code }}</code></pre>
+                    </div>
+                </div>
+
+                <div class="actions-row">
+                    <button onclick="navigator.clipboard.writeText(document.querySelector('pre code').innerText).then(()=>alert('Code copied to clipboard.')).catch(()=>alert('Copy failed'))" class="secondary-button">Copy Code</button>
+                    <a href="{{ url_for('index') }}" class="secondary-button">Back to Generator</a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='libs/prism.js') }}"></script>
+</body>
+</html>
