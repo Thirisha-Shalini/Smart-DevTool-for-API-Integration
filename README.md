@@ -1,4 +1,4 @@
-## Smart DevTool for API Integration
+# Smart API Integration Tool
 
 ## Overview
 The Smart API Integration Tool is a web application designed to simplify the process of integrating with various APIs. It allows users to extract API information from documentation, generate wrapper classes in their preferred programming language, and provides a user-friendly interface for interaction.
@@ -13,7 +13,8 @@ The Smart API Integration Tool is a web application designed to simplify the pro
 - Users can easily copy or download the generated code.
 - Swagger/OpenAPI auto-detection for accurate parsing.
 - Downloadable project files in ZIP format.
-
+- AI-generated API summaries for concise overviews.
+- Optional enhancements for testing API endpoints or exporting a Postman collection.
 
 ## Setup
 1. Clone the repository:
@@ -65,8 +66,8 @@ The Smart API Integration Tool is a web application designed to simplify the pro
    - Supports code download as ZIP packages
 
 ### Example Output
-- **Python**: Generates class with methods like `get_users()`, `post_users()` with built-in auth handling
-- **Node.js**: Generates async methods compatible with modern JavaScript
+- Python: Generates class with methods like `get_users()`, `post_users()` with built-in auth handling
+- Node.js: Generates async methods compatible with modern JavaScript
 
 The solution simplifies API integration by automating the extraction and code generation process, reducing manual integration effort.
 
